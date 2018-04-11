@@ -1,0 +1,46 @@
+<Solution>
+  <PropertyGroup Name="introduction" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="dialog">
+          <Project Name="MessageDialog.csd" Type="Layer" />
+          <Project Name="YesNoDialog.csd" Type="Layer" />
+          <Project Name="Layer.csd" Type="Layer" />
+        </Folder>
+        <Folder Name="font">
+          <TTF Name="rounded-x-mplus-1c-heavy.ttf" />
+        </Folder>
+        <Folder Name="images">
+          <Folder Name="ui">
+            <Folder Name="common">
+              <Image Name="back.png" />
+              <Image Name="bg_overlay.png" />
+              <Image Name="btn_back.png" />
+              <Image Name="btn_danger.png" />
+              <Image Name="btn_danger_highlight.png" />
+              <Image Name="btn_info.png" />
+              <Image Name="btn_info_highlight.png" />
+              <Image Name="btn_primary.png" />
+              <Image Name="btn_success.png" />
+              <Image Name="btn_success_highlight.png" />
+              <Image Name="btn_warning_highlight.png" />
+              <Image Name="dot_black.png" />
+            </Folder>
+            <Folder Name="title">
+              <Image Name="title-back.png" />
+              <Image Name="title-chara.png" />
+              <Image Name="title-logo.png" />
+              <Image Name="title-start.png" />
+            </Folder>
+          </Folder>
+        </Folder>
+        <Folder Name="scene">
+          <Project Name="DifficultyScene.csd" Type="Scene" />
+          <Project Name="GameScene.csd" Type="Scene" />
+          <Project Name="TitleScene.csd" Type="Scene" />
+        </Folder>
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
