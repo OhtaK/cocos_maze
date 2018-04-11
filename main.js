@@ -60,7 +60,7 @@ var layout = {};
 var util = {};
 var node = {};
 var setting = {
-  SHOW_SCENE_STACK : true,
+  SHOW_SCENE_STACK : false,
   SHOW_PUSH_NOTIFICATION : false,
   API_HOST : 'localhost',
   API_PORT : 8080
