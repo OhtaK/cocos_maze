@@ -14,7 +14,8 @@ scene.GameScene = (function() {
         labelScore : null,
         labelTime : null,
         buttonTap : null,
-        buttonBack : null
+        buttonBack : null,
+        player : null
       };
     },
     onEnter : function() {
@@ -38,6 +39,17 @@ scene.GameScene = (function() {
         this._count = 100;
         break;
       }
+                                         // キーイベント
+                                         this._keyListenerForPlayer = {
+                                         event : cc.EventListener.KEYBOARD,
+                                         onKeyPressed : function(keyCode, event) {
+                                         // F5でリロード
+                                         if (keyCode === 37) {
+                                         console.log("left")
+                                         }
+                                         }.bind(this)
+                                         };
+                                         cc.eventManager.addListener(this._keyListenerForPlayer, this);
 
       // UIを初期化
       this._views.labelDifficulty.setString(title);
@@ -65,10 +77,13 @@ scene.GameScene = (function() {
       this._time += dt;
       this._views.labelTime.setString(this._time.toFixed(1));
     },
+																																									
     _onClickButtonTap : function(index) {
       // 画面タップのたびにcountを-1
       this._count--;
       this._views.labelScore.setString('残り：' + this._count);
+      var newPlayerPos = this._views.player.getPositionX() + 10;
+						this._views.player.setPositionX(newPlayerPos);
 
       // countが0以下でゲーム終了
       if (this._count <= 0) {
@@ -87,5 +102,6 @@ scene.GameScene = (function() {
       util.scene.popScene();
     }
   });
+																			
   return GameScene;
 })();
