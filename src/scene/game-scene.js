@@ -9,13 +9,16 @@ scene.GameScene = (function() {
 
       this._time = 0;
       this._count = 0;
+      this._touchFlg = 0;
       this._views = {
         labelDifficulty : null,
         labelScore : null,
         labelTime : null,
         buttonTap : null,
+        btnLeft : null,
         buttonBack : null,
-        player : null
+        player : null,
+        wall : null
       };
     },
     onEnter : function() {
@@ -39,17 +42,6 @@ scene.GameScene = (function() {
         this._count = 100;
         break;
       }
-                                         // キーイベント
-                                         this._keyListenerForPlayer = {
-                                         event : cc.EventListener.KEYBOARD,
-                                         onKeyPressed : function(keyCode, event) {
-                                         // F5でリロード
-                                         if (keyCode === 37) {
-                                         console.log("left")
-                                         }
-                                         }.bind(this)
-                                         };
-                                         cc.eventManager.addListener(this._keyListenerForPlayer, this);
 
       // UIを初期化
       this._views.labelDifficulty.setString(title);
@@ -73,17 +65,28 @@ scene.GameScene = (function() {
         this.scheduleUpdate();
       });
     },
+
     update : function(dt) {
       this._time += dt;
       this._views.labelTime.setString(this._time.toFixed(1));
+
+      var playerRect = this._views.player.getBoundingBox();
+      var wallRect = this._views.wall.getBoundingBox();
+
+      if (cc.rectIntersectsRect(playerRect, wallRect)) {
+        this._touchFlg = true;
+      }
+      else{
+        this._touchFlg = false;
+      }
     },
-																																									
+
     _onClickButtonTap : function(index) {
       // 画面タップのたびにcountを-1
       this._count--;
       this._views.labelScore.setString('残り：' + this._count);
       var newPlayerPos = this._views.player.getPositionX() + 10;
-						this._views.player.setPositionX(newPlayerPos);
+			this._views.player.setPositionX(newPlayerPos);
 
       // countが0以下でゲーム終了
       if (this._count <= 0) {
@@ -96,6 +99,48 @@ scene.GameScene = (function() {
 
         // updateを呼ばないように
         this.unscheduleUpdate();
+      }
+    },
+    //仮の移動ボタン
+    //壁に触れてたら進めないように
+    _onClickBtnRight : function(index) {
+      var playerRect = this._views.player.getBoundingBox();
+      var wallRect = this._views.wall.getBoundingBox();
+      var movedPlayerRect = cc.rect({x: (playerRect.x + 10), y: (playerRect.y), width: (playerRect.width), height: (playerRect.height)});
+      
+      if(!cc.rectIntersectsRect(movedPlayerRect, wallRect)){
+        var newPlayerPos = this._views.player.getPositionX() + 10;
+        this._views.player.setPositionX(newPlayerPos);
+      }
+    },
+    _onClickBtnLeft : function(index) {
+      var playerRect = this._views.player.getBoundingBox();
+      var wallRect = this._views.wall.getBoundingBox();
+      var movedPlayerRect = cc.rect({x: (playerRect.x - 10), y: (playerRect.y), width: (playerRect.width), height: (playerRect.height)});
+      
+      if(!cc.rectIntersectsRect(movedPlayerRect, wallRect)){
+        var newPlayerPos = this._views.player.getPositionX() - 10;
+        this._views.player.setPositionX(newPlayerPos);
+      }
+    },
+    _onClickBtnUp : function(index) {
+      var playerRect = this._views.player.getBoundingBox();
+      var wallRect = this._views.wall.getBoundingBox();
+      var movedPlayerRect = cc.rect({x: (playerRect.x), y: (playerRect.y + 10), width: (playerRect.width), height: (playerRect.height)});
+      
+      if(!cc.rectIntersectsRect(movedPlayerRect, wallRect)){
+        var newPlayerPos = this._views.player.getPositionY() + 10;
+        this._views.player.setPositionY(newPlayerPos);
+      }
+    },
+    _onClickBtnDown : function(index) {
+      var playerRect = this._views.player.getBoundingBox();
+      var wallRect = this._views.wall.getBoundingBox();
+      var movedPlayerRect = cc.rect({x: (playerRect.x), y: (playerRect.y - 10), width: (playerRect.width), height: (playerRect.height)});
+      
+      if(!cc.rectIntersectsRect(movedPlayerRect, wallRect)){
+        var newPlayerPos = this._views.player.getPositionY() - 10;
+        this._views.player.setPositionY(newPlayerPos);
       }
     },
     _onClickButtonBack : function() {
