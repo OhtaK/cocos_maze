@@ -7,18 +7,21 @@ scene.GameScene = (function() {
       this._super(param);
       cc.log(param);
 
-      this._time = 0;
+      this._time = 10;
       this._count = 0;
-      this._touchFlg = 0;
+      this._playingFlg = false;
       this._views = {
         labelDifficulty : null,
         labelScore : null,
         labelTime : null,
+        labelClear : null,
+        labelGameOver : null,
         buttonTap : null,
         btnLeft : null,
         buttonBack : null,
         player : null,
-        wall : null
+        wall : null,
+        goal : null
       };
     },
     onEnter : function() {
@@ -48,8 +51,13 @@ scene.GameScene = (function() {
       this._views.labelTime.setString(this._time);
       this._views.buttonTap.setVisible(false);
 
+      this._views.labelClear.setVisible(false);
+      this._views.labelGameOver.setVisible(false);
+
       // アニメーション再生
       this._ccsData.action.play('ready', false);
+
+      this._playingFlg = true;
 
       // readyアニメーションが終わったら呼ばれる処理
       this._ccsData.action.setLastFrameCallFunc(() => {
@@ -67,17 +75,24 @@ scene.GameScene = (function() {
     },
 
     update : function(dt) {
-      this._time += dt;
+      this._time -= dt;
       this._views.labelTime.setString(this._time.toFixed(1));
 
       var playerRect = this._views.player.getBoundingBox();
-      var wallRect = this._views.wall.getBoundingBox();
+      var goalRect = this._views.goal.getBoundingBox();
 
-      if (cc.rectIntersectsRect(playerRect, wallRect)) {
-        this._touchFlg = true;
+      if(cc.rectIntersectsRect(playerRect, goalRect)){
+        //ゴールに到着でゲーム終了
+        this._views.labelClear.setVisible(true);
+        this.unscheduleUpdate();
+        this._playingFlg = false
       }
-      else{
-        this._touchFlg = false;
+
+      if(this._time < 0){
+        //時間切れでゲーム終了
+        this._views.labelGameOver.setVisible(true);
+        this.unscheduleUpdate();
+        this._playingFlg = false
       }
     },
 
@@ -102,13 +117,13 @@ scene.GameScene = (function() {
       }
     },
     //仮の移動ボタン
-    //壁に触れてたら進めないように
+    //壁があったら進めないように
     _onClickBtnRight : function(index) {
       var playerRect = this._views.player.getBoundingBox();
       var wallRect = this._views.wall.getBoundingBox();
       var movedPlayerRect = cc.rect({x: (playerRect.x + 10), y: (playerRect.y), width: (playerRect.width), height: (playerRect.height)});
       
-      if(!cc.rectIntersectsRect(movedPlayerRect, wallRect)){
+      if(!cc.rectIntersectsRect(movedPlayerRect, wallRect) && this._playingFlg){
         var newPlayerPos = this._views.player.getPositionX() + 10;
         this._views.player.setPositionX(newPlayerPos);
       }
@@ -118,7 +133,7 @@ scene.GameScene = (function() {
       var wallRect = this._views.wall.getBoundingBox();
       var movedPlayerRect = cc.rect({x: (playerRect.x - 10), y: (playerRect.y), width: (playerRect.width), height: (playerRect.height)});
       
-      if(!cc.rectIntersectsRect(movedPlayerRect, wallRect)){
+      if(!cc.rectIntersectsRect(movedPlayerRect, wallRect) && this._playingFlg){
         var newPlayerPos = this._views.player.getPositionX() - 10;
         this._views.player.setPositionX(newPlayerPos);
       }
@@ -128,7 +143,7 @@ scene.GameScene = (function() {
       var wallRect = this._views.wall.getBoundingBox();
       var movedPlayerRect = cc.rect({x: (playerRect.x), y: (playerRect.y + 10), width: (playerRect.width), height: (playerRect.height)});
       
-      if(!cc.rectIntersectsRect(movedPlayerRect, wallRect)){
+      if(!cc.rectIntersectsRect(movedPlayerRect, wallRect) && this._playingFlg){
         var newPlayerPos = this._views.player.getPositionY() + 10;
         this._views.player.setPositionY(newPlayerPos);
       }
@@ -138,7 +153,7 @@ scene.GameScene = (function() {
       var wallRect = this._views.wall.getBoundingBox();
       var movedPlayerRect = cc.rect({x: (playerRect.x), y: (playerRect.y - 10), width: (playerRect.width), height: (playerRect.height)});
       
-      if(!cc.rectIntersectsRect(movedPlayerRect, wallRect)){
+      if(!cc.rectIntersectsRect(movedPlayerRect, wallRect) && this._playingFlg){
         var newPlayerPos = this._views.player.getPositionY() - 10;
         this._views.player.setPositionY(newPlayerPos);
       }

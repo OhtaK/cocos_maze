@@ -593,7 +593,7 @@
               "ScaleY": 0.5
             },
             "Position": {
-              "X": -315.0,
+              "X": -316.0,
               "Y": 540.5
             },
             "Scale": {
@@ -603,15 +603,15 @@
             "CColor": {},
             "IconVisible": false,
             "PrePosition": {
-              "X": -0.4922,
+              "X": -0.4938,
               "Y": 0.4758
             },
             "PreSize": {
               "X": 0.9375,
               "Y": 0.1312
             },
-            "LeftMargin": -615.0,
-            "RightMargin": 655.0,
+            "LeftMargin": -616.0,
+            "RightMargin": 656.0,
             "TopMargin": 521.0,
             "BottomMargin": 466.0,
             "Tag": 16,
@@ -643,8 +643,8 @@
             "TouchEnable": true,
             "AnchorPoint": {},
             "Position": {
-              "X": 23.0,
-              "Y": 268.0
+              "X": 24.0,
+              "Y": 540.0
             },
             "Scale": {
               "ScaleX": 1.0,
@@ -653,17 +653,17 @@
             "CColor": {},
             "IconVisible": false,
             "PrePosition": {
-              "X": 0.0359,
-              "Y": 0.2359
+              "X": 0.0375,
+              "Y": 0.4754
             },
             "PreSize": {
               "X": 0.9375,
               "Y": 0.1761
             },
-            "LeftMargin": 23.0,
-            "RightMargin": 17.0,
-            "TopMargin": 668.0,
-            "BottomMargin": 268.0,
+            "LeftMargin": 24.0,
+            "RightMargin": 16.0,
+            "TopMargin": 396.0,
+            "BottomMargin": 540.0,
             "Tag": 18,
             "Children": [
               {
@@ -778,6 +778,104 @@
                 },
                 "Alpha": 0,
                 "Name": "labelGo",
+                "ctype": "TextObjectData"
+              },
+              {
+                "FontSize": 20,
+                "LabelText": "GAME OVER...",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 318.5002,
+                  "Y": 235.9999
+                },
+                "Scale": {
+                  "ScaleX": 1.6957,
+                  "ScaleY": 2.6522
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5308,
+                  "Y": 1.18
+                },
+                "PreSize": {
+                  "X": 0.23,
+                  "Y": 0.115
+                },
+                "LeftMargin": 249.5002,
+                "RightMargin": 212.4998,
+                "TopMargin": -47.4999,
+                "BottomMargin": 224.4999,
+                "Tag": 25,
+                "ActionTag": -114394445,
+                "Size": {
+                  "X": 138.0,
+                  "Y": 23.0
+                },
+                "Name": "labelGameOver",
+                "ctype": "TextObjectData"
+              },
+              {
+                "FontSize": 20,
+                "LabelText": "CLEAR!!",
+                "OutlineColor": {
+                  "G": 0,
+                  "B": 0
+                },
+                "ShadowColor": {
+                  "R": 110,
+                  "G": 110,
+                  "B": 110
+                },
+                "ShadowOffsetX": 2.0,
+                "ShadowOffsetY": -2.0,
+                "AnchorPoint": {
+                  "ScaleX": 0.5,
+                  "ScaleY": 0.5
+                },
+                "Position": {
+                  "X": 315.4999,
+                  "Y": 172.0
+                },
+                "Scale": {
+                  "ScaleX": 1.6957,
+                  "ScaleY": 2.6522
+                },
+                "CColor": {},
+                "IconVisible": false,
+                "PrePosition": {
+                  "X": 0.5258,
+                  "Y": 0.86
+                },
+                "PreSize": {
+                  "X": 0.13,
+                  "Y": 0.115
+                },
+                "LeftMargin": 276.4999,
+                "RightMargin": 245.5001,
+                "TopMargin": 16.5,
+                "BottomMargin": 160.5,
+                "Tag": 26,
+                "ActionTag": 678379395,
+                "Size": {
+                  "X": 78.0,
+                  "Y": 23.0
+                },
+                "Name": "labelClear",
                 "ctype": "TextObjectData"
               }
             ],
@@ -902,7 +1000,7 @@
               "ScaleY": 0.5
             },
             "Position": {
-              "X": -363.0,
+              "X": -365.0,
               "Y": 576.0
             },
             "Scale": {
@@ -912,15 +1010,15 @@
             "CColor": {},
             "IconVisible": false,
             "PrePosition": {
-              "X": -0.5672,
+              "X": -0.5703,
               "Y": 0.507
             },
             "PreSize": {
               "X": 1.0,
               "Y": 1.0
             },
-            "LeftMargin": -683.0,
-            "RightMargin": 683.0,
+            "LeftMargin": -685.0,
+            "RightMargin": 685.0,
             "TopMargin": -8.0,
             "BottomMargin": 8.0,
             "Tag": 17,
@@ -1292,8 +1390,8 @@
               "ScaleY": 0.5
             },
             "Position": {
-              "X": 344.9998,
-              "Y": 556.4992
+              "X": 344.9997,
+              "Y": 556.4991
             },
             "Scale": {
               "ScaleX": 0.0325,
@@ -1309,10 +1407,10 @@
               "X": 2.5,
               "Y": 0.9384
             },
-            "LeftMargin": -455.0002,
-            "RightMargin": -504.9998,
-            "TopMargin": 46.5007,
-            "BottomMargin": 23.4992,
+            "LeftMargin": -455.0003,
+            "RightMargin": -504.9996,
+            "TopMargin": 46.5009,
+            "BottomMargin": 23.4991,
             "Tag": 22,
             "ActionTag": -252771028,
             "Size": {
@@ -1320,6 +1418,96 @@
               "Y": 1066.0
             },
             "Name": "wall",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "images/ui/common/wall.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 770,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 128.9944,
+              "Y": 566.4946
+            },
+            "Scale": {
+              "ScaleX": 0.0325,
+              "ScaleY": 0.2064
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.2016,
+              "Y": 0.4987
+            },
+            "PreSize": {
+              "X": 2.5,
+              "Y": 0.9384
+            },
+            "LeftMargin": -671.0056,
+            "RightMargin": -288.9944,
+            "TopMargin": 36.5054,
+            "BottomMargin": 33.4946,
+            "Tag": 23,
+            "ActionTag": 302159926,
+            "Size": {
+              "X": 1600.0,
+              "Y": 1066.0
+            },
+            "Name": "wall",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "images/ui/common/goal.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 770,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 198.4984,
+              "Y": 314.9984
+            },
+            "Scale": {
+              "ScaleX": 0.2311,
+              "ScaleY": 0.2198
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.3102,
+              "Y": 0.2773
+            },
+            "PreSize": {
+              "X": 0.7031,
+              "Y": 0.3565
+            },
+            "LeftMargin": -26.5016,
+            "RightMargin": 216.5016,
+            "TopMargin": 618.5016,
+            "BottomMargin": 112.4984,
+            "Tag": 27,
+            "ActionTag": 1489059361,
+            "Size": {
+              "X": 450.0,
+              "Y": 405.0
+            },
+            "Name": "goal",
             "ctype": "SpriteObjectData"
           }
         ],
@@ -1339,6 +1527,7 @@
         "../images/ui/common/ball.png",
         "../images/ui/common/btn_info.png",
         "../images/ui/common/btn_info_highlight.png",
+        "../images/ui/common/goal.png",
         "../images/ui/common/wall.png"
       ],
       "ctype": "GameFileData"
