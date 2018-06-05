@@ -594,7 +594,7 @@
             },
             "Position": {
               "X": -316.0,
-              "Y": 540.5
+              "Y": 539.5
             },
             "Scale": {
               "ScaleX": 1.0,
@@ -604,7 +604,7 @@
             "IconVisible": false,
             "PrePosition": {
               "X": -0.4938,
-              "Y": 0.4758
+              "Y": 0.4749
             },
             "PreSize": {
               "X": 0.9375,
@@ -612,8 +612,8 @@
             },
             "LeftMargin": -616.0,
             "RightMargin": 656.0,
-            "TopMargin": 521.0,
-            "BottomMargin": 466.0,
+            "TopMargin": 522.0,
+            "BottomMargin": 465.0,
             "Tag": 16,
             "ActionTag": -626516102,
             "Size": {
@@ -643,7 +643,7 @@
             "TouchEnable": true,
             "AnchorPoint": {},
             "Position": {
-              "X": 24.0,
+              "X": 25.0,
               "Y": 540.0
             },
             "Scale": {
@@ -653,15 +653,15 @@
             "CColor": {},
             "IconVisible": false,
             "PrePosition": {
-              "X": 0.0375,
+              "X": 0.0391,
               "Y": 0.4754
             },
             "PreSize": {
               "X": 0.9375,
               "Y": 0.1761
             },
-            "LeftMargin": 24.0,
-            "RightMargin": 16.0,
+            "LeftMargin": 25.0,
+            "RightMargin": 15.0,
             "TopMargin": 396.0,
             "BottomMargin": 540.0,
             "Tag": 18,
@@ -799,8 +799,8 @@
                   "ScaleY": 0.5
                 },
                 "Position": {
-                  "X": 318.5002,
-                  "Y": 235.9999
+                  "X": 322.5004,
+                  "Y": 175.9999
                 },
                 "Scale": {
                   "ScaleX": 1.6957,
@@ -809,17 +809,17 @@
                 "CColor": {},
                 "IconVisible": false,
                 "PrePosition": {
-                  "X": 0.5308,
-                  "Y": 1.18
+                  "X": 0.5375,
+                  "Y": 0.88
                 },
                 "PreSize": {
                   "X": 0.23,
                   "Y": 0.115
                 },
-                "LeftMargin": 249.5002,
-                "RightMargin": 212.4998,
-                "TopMargin": -47.4999,
-                "BottomMargin": 224.4999,
+                "LeftMargin": 253.5004,
+                "RightMargin": 208.4996,
+                "TopMargin": 12.5001,
+                "BottomMargin": 164.4999,
                 "Tag": 25,
                 "ActionTag": -114394445,
                 "Size": {
@@ -1000,8 +1000,8 @@
               "ScaleY": 0.5
             },
             "Position": {
-              "X": -365.0,
-              "Y": 576.0
+              "X": -364.0,
+              "Y": 575.0
             },
             "Scale": {
               "ScaleX": 1.0,
@@ -1010,17 +1010,17 @@
             "CColor": {},
             "IconVisible": false,
             "PrePosition": {
-              "X": -0.5703,
-              "Y": 0.507
+              "X": -0.5688,
+              "Y": 0.5062
             },
             "PreSize": {
               "X": 1.0,
               "Y": 1.0
             },
-            "LeftMargin": -685.0,
-            "RightMargin": 685.0,
-            "TopMargin": -8.0,
-            "BottomMargin": 8.0,
+            "LeftMargin": -684.0,
+            "RightMargin": 684.0,
+            "TopMargin": -7.0,
+            "BottomMargin": 7.0,
             "Tag": 17,
             "ActionTag": -2084766820,
             "Size": {
@@ -1045,8 +1045,8 @@
               "ScaleY": 0.5
             },
             "Position": {
-              "X": 221.498,
-              "Y": 593.4998
+              "X": 154.4968,
+              "Y": 217.5002
             },
             "Scale": {
               "ScaleX": 0.0606,
@@ -1055,17 +1055,17 @@
             "CColor": {},
             "IconVisible": false,
             "PrePosition": {
-              "X": 0.3461,
-              "Y": 0.5224
+              "X": 0.2414,
+              "Y": 0.1915
             },
             "PreSize": {
               "X": 1.6,
               "Y": 0.8697
             },
-            "LeftMargin": -290.502,
-            "RightMargin": -93.498,
-            "TopMargin": 48.5002,
-            "BottomMargin": 99.4998,
+            "LeftMargin": -357.5032,
+            "RightMargin": -26.4968,
+            "TopMargin": 424.4998,
+            "BottomMargin": -276.4998,
             "Tag": 18,
             "ActionTag": 1807564789,
             "Size": {
@@ -1364,7 +1364,7 @@
             },
             "LeftMargin": 472.0005,
             "RightMargin": 121.9995,
-            "TopMargin": 1039.9996,
+            "TopMargin": 1039.9998,
             "BottomMargin": 60.0003,
             "Tag": 20,
             "ActionTag": -2062998422,
@@ -1390,34 +1390,36 @@
               "ScaleY": 0.5
             },
             "Position": {
-              "X": 344.9997,
-              "Y": 556.4991
+              "X": 194.0002,
+              "Y": 352.4988
             },
             "Scale": {
               "ScaleX": 0.0325,
               "ScaleY": 0.2064
             },
+            "RotationSkewX": 90.0,
+            "RotationSkewY": 90.0,
             "CColor": {},
             "IconVisible": false,
             "PrePosition": {
-              "X": 0.5391,
-              "Y": 0.4899
+              "X": 0.3031,
+              "Y": 0.3103
             },
             "PreSize": {
               "X": 2.5,
               "Y": 0.9384
             },
-            "LeftMargin": -455.0003,
-            "RightMargin": -504.9996,
-            "TopMargin": 46.5009,
-            "BottomMargin": 23.4991,
+            "LeftMargin": -605.9998,
+            "RightMargin": -354.0002,
+            "TopMargin": 250.5012,
+            "BottomMargin": -180.5012,
             "Tag": 22,
             "ActionTag": -252771028,
             "Size": {
               "X": 1600.0,
               "Y": 1066.0
             },
-            "Name": "wall",
+            "Name": "walls[4]",
             "ctype": "SpriteObjectData"
           },
           {
@@ -1435,34 +1437,34 @@
               "ScaleY": 0.5
             },
             "Position": {
-              "X": 128.9944,
-              "Y": 566.4946
+              "X": 56.9945,
+              "Y": 458.4943
             },
             "Scale": {
               "ScaleX": 0.0325,
-              "ScaleY": 0.2064
+              "ScaleY": 0.5478
             },
             "CColor": {},
             "IconVisible": false,
             "PrePosition": {
-              "X": 0.2016,
-              "Y": 0.4987
+              "X": 0.0891,
+              "Y": 0.4036
             },
             "PreSize": {
               "X": 2.5,
               "Y": 0.9384
             },
-            "LeftMargin": -671.0056,
-            "RightMargin": -288.9944,
-            "TopMargin": 36.5054,
-            "BottomMargin": 33.4946,
+            "LeftMargin": -743.0055,
+            "RightMargin": -216.9945,
+            "TopMargin": 144.5057,
+            "BottomMargin": -74.5057,
             "Tag": 23,
             "ActionTag": 302159926,
             "Size": {
               "X": 1600.0,
               "Y": 1066.0
             },
-            "Name": "wall",
+            "Name": "walls[0]",
             "ctype": "SpriteObjectData"
           },
           {
@@ -1480,8 +1482,8 @@
               "ScaleY": 0.5
             },
             "Position": {
-              "X": 198.4984,
-              "Y": 314.9984
+              "X": 470.498,
+              "Y": 625.999
             },
             "Scale": {
               "ScaleX": 0.2311,
@@ -1490,17 +1492,17 @@
             "CColor": {},
             "IconVisible": false,
             "PrePosition": {
-              "X": 0.3102,
-              "Y": 0.2773
+              "X": 0.7352,
+              "Y": 0.5511
             },
             "PreSize": {
               "X": 0.7031,
               "Y": 0.3565
             },
-            "LeftMargin": -26.5016,
-            "RightMargin": 216.5016,
-            "TopMargin": 618.5016,
-            "BottomMargin": 112.4984,
+            "LeftMargin": 245.498,
+            "RightMargin": -55.498,
+            "TopMargin": 307.501,
+            "BottomMargin": 423.499,
             "Tag": 27,
             "ActionTag": 1489059361,
             "Size": {
@@ -1508,6 +1510,192 @@
               "Y": 405.0
             },
             "Name": "goal",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "images/ui/common/wall.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 770,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5576,
+              "ScaleY": 0.5026
+            },
+            "Position": {
+              "X": 322.5,
+              "Y": 137.5
+            },
+            "Scale": {
+              "ScaleX": 0.0325,
+              "ScaleY": 0.5478
+            },
+            "RotationSkewX": 90.0,
+            "RotationSkewY": 90.0,
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5039,
+              "Y": 0.121
+            },
+            "PreSize": {
+              "X": 2.5,
+              "Y": 0.9384
+            },
+            "LeftMargin": -569.66,
+            "RightMargin": -390.34,
+            "TopMargin": 468.2716,
+            "BottomMargin": -398.2716,
+            "Tag": 28,
+            "ActionTag": -653824242,
+            "Size": {
+              "X": 1600.0,
+              "Y": 1066.0
+            },
+            "Name": "walls[1]",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "images/ui/common/wall.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 770,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 584.9944,
+              "Y": 459.4943
+            },
+            "Scale": {
+              "ScaleX": 0.0325,
+              "ScaleY": 0.5478
+            },
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.9141,
+              "Y": 0.4045
+            },
+            "PreSize": {
+              "X": 2.5,
+              "Y": 0.9384
+            },
+            "LeftMargin": -215.0056,
+            "RightMargin": -744.9944,
+            "TopMargin": 143.5057,
+            "BottomMargin": -73.5057,
+            "Tag": 29,
+            "ActionTag": -1377088274,
+            "Size": {
+              "X": 1600.0,
+              "Y": 1066.0
+            },
+            "Name": "walls[2]",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "images/ui/common/wall.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 770,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 319.9907,
+              "Y": 772.4958
+            },
+            "Scale": {
+              "ScaleX": 0.0325,
+              "ScaleY": 0.5478
+            },
+            "RotationSkewX": 90.0,
+            "RotationSkewY": 90.0,
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.5,
+              "Y": 0.68
+            },
+            "PreSize": {
+              "X": 2.5,
+              "Y": 0.9384
+            },
+            "LeftMargin": -480.0093,
+            "RightMargin": -479.9907,
+            "TopMargin": -169.4958,
+            "BottomMargin": 239.4958,
+            "Tag": 30,
+            "ActionTag": -1258464972,
+            "Size": {
+              "X": 1600.0,
+              "Y": 1066.0
+            },
+            "Name": "walls[3]",
+            "ctype": "SpriteObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "images/ui/common/wall.png",
+              "Plist": ""
+            },
+            "BlendFunc": {
+              "Src": 770,
+              "Dst": 771
+            },
+            "AnchorPoint": {
+              "ScaleX": 0.5,
+              "ScaleY": 0.5
+            },
+            "Position": {
+              "X": 418.0004,
+              "Y": 532.4989
+            },
+            "Scale": {
+              "ScaleX": 0.0325,
+              "ScaleY": 0.2627
+            },
+            "RotationSkewX": 90.0,
+            "RotationSkewY": 90.0,
+            "CColor": {},
+            "IconVisible": false,
+            "PrePosition": {
+              "X": 0.6531,
+              "Y": 0.4687
+            },
+            "PreSize": {
+              "X": 2.5,
+              "Y": 0.9384
+            },
+            "LeftMargin": -381.9996,
+            "RightMargin": -578.0004,
+            "TopMargin": 70.5011,
+            "BottomMargin": -0.5011,
+            "Tag": 31,
+            "ActionTag": 564011519,
+            "Size": {
+              "X": 1600.0,
+              "Y": 1066.0
+            },
+            "Name": "walls[5]",
             "ctype": "SpriteObjectData"
           }
         ],
