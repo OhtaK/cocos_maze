@@ -98,6 +98,8 @@ scene.GameScene = (function() {
 
     _onClickButtonTap : function(index) {
       // 画面タップのたびにcountを-1
+      var touchPos = this._views.buttonTap._touchBeganPosition;
+      var playerPos = this._views.player.getPosition();
       this._count--;
       this._views.labelScore.setString('残り：' + this._count);
       var newPlayerPos = this._views.player.getPositionX() + 10;
