@@ -9,7 +9,18 @@ scene.GameScene = (function() {
 
       this._time = 30;
       this._count = 0;
+      
       this._playingFlg = false;
+      this._playerMoveParam = {
+        //プレイヤーを動かすのに必要なパラメーター
+        moveSpeed : 10,//単位はピクセル/frame
+        movingFlg : false,
+        moveToPos : null,
+        //1frameあたりに動く距離（毎フレーム計算したくないのでパラメーターとしてもっとく）
+        diffX : 0,
+        diffY : 0
+      }
+
       this._views = {
         labelDifficulty : null,
         labelScore : null,
@@ -21,7 +32,7 @@ scene.GameScene = (function() {
         buttonBack : null,
         player : null,
         walls : [],
-        goal : null
+        goal : null,
       };
     },
     onEnter : function() {
@@ -78,6 +89,18 @@ scene.GameScene = (function() {
       this._time -= dt;
       this._views.labelTime.setString(this._time.toFixed(1));
 
+      //プレイヤーの移動
+      if(this._playingFlg && this._playerMovingFlg && !this._checkTouchingWithEachWall(this._playerMoveParam.diffX, this._playerMoveParam.diffY)){
+        var nowPlayerPos = this._views.player.getPosition();
+        //タップした場所についたら止まる
+        if(Math.abs(nowPlayerPos.x - this._playerMoveParam.moveToPos.x) > 1 || Math.abs(nowPlayerPos.y - this._playerMoveParam.moveToPos.y) > 1){
+          this._views.player.setPosition(nowPlayerPos.x + this._playerMoveParam.diffX, nowPlayerPos.y + this._playerMoveParam.diffY);
+        }
+        else{
+          this._playerMovingFlg = false;
+        }
+      }
+
       var playerRect = this._views.player.getBoundingBox();
       var goalRect = this._views.goal.getBoundingBox();
 
@@ -97,26 +120,16 @@ scene.GameScene = (function() {
     },
 
     _onClickButtonTap : function(index) {
-      // 画面タップのたびにcountを-1
-      var touchPos = this._views.buttonTap._touchBeganPosition;
-      var playerPos = this._views.player.getPosition();
-      this._count--;
-      this._views.labelScore.setString('残り：' + this._count);
-      var newPlayerPos = this._views.player.getPositionX() + 10;
-			this._views.player.setPositionX(newPlayerPos);
+      // 画面をタップしたらそこに向かってプレイヤーが動きます。
+      this._playerMoveParam.moveToPos = this._views.buttonTap._touchBeganPosition;
+      var nowPlayerPos = this._views.player.getPosition();
+      //var nowPlayerPosY = this._views.player.getPositionY;
 
-      // countが0以下でゲーム終了
-      if (this._count <= 0) {
-        // ボタン表示切り替え
-        this._views.buttonTap.setVisible(false);
-        this._views.buttonBack.setVisible(true);
+      //１フレームあたりの動く距離を保存しとく（いちいち計算したくないので）
+      this._playerMoveParam.diffX = (this._playerMoveParam.moveToPos.x - nowPlayerPos.x) / this._playerMoveParam.moveSpeed;
+      this._playerMoveParam.diffY = (this._playerMoveParam.moveToPos.y - nowPlayerPos.y) / this._playerMoveParam.moveSpeed;
 
-        // スコア更新
-        util.score.updateScore(this._param.difficulty, this._time);
-
-        // updateを呼ばないように
-        this.unscheduleUpdate();
-      }
+      this._playerMovingFlg = true;
     },
 
     _checkTouchingWithEachWall : function(offsetX, offsetY) {
@@ -134,45 +147,6 @@ scene.GameScene = (function() {
         }
       }
       return false;
-    },
-
-    //仮の移動ボタン
-    //壁があったら進めないように
-    _onClickBtnRight : function(index) {
-      var offsetX = 10;
-      var offsetY = 0;
-      if(!this._checkTouchingWithEachWall(offsetX, offsetY) && this._playingFlg){
-        var newPlayerPosX = this._views.player.getPositionX() + offsetX;
-        var newPlayerPosY = this._views.player.getPositionY() + offsetY;
-        this._views.player.setPosition(newPlayerPosX, newPlayerPosY);
-      }
-    },
-    _onClickBtnLeft : function(index) {
-      var offsetX = -10;
-      var offsetY = 0;
-      if(!this._checkTouchingWithEachWall(offsetX, offsetY) && this._playingFlg){
-        var newPlayerPosX = this._views.player.getPositionX() + offsetX;
-        var newPlayerPosY = this._views.player.getPositionY() + offsetY;
-        this._views.player.setPosition(newPlayerPosX, newPlayerPosY);
-      }
-    },
-    _onClickBtnUp : function(index) {
-      var offsetX = 0;
-      var offsetY = 10;
-      if(!this._checkTouchingWithEachWall(offsetX, offsetY) && this._playingFlg){
-        var newPlayerPosX = this._views.player.getPositionX() + offsetX;
-        var newPlayerPosY = this._views.player.getPositionY() + offsetY;
-        this._views.player.setPosition(newPlayerPosX, newPlayerPosY);
-      }
-    },
-    _onClickBtnDown : function(index) {
-      var offsetX = 0;
-      var offsetY = -10;
-      if(!this._checkTouchingWithEachWall(offsetX, offsetY) && this._playingFlg){
-        var newPlayerPosX = this._views.player.getPositionX() + offsetX;
-        var newPlayerPosY = this._views.player.getPositionY() + offsetY;
-        this._views.player.setPosition(newPlayerPosX, newPlayerPosY);
-      }
     },
     _onClickButtonBack : function() {
       util.scene.popScene();
