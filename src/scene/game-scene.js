@@ -9,6 +9,11 @@ scene.GameScene = (function() {
 
       this._time = 30;
       this._count = 0;
+      this._currentStage = 1;
+
+      this._playerInitPos = null;
+      this._goalInitPos = null;
+      this._wallInitPos = [];
       
       this._playingFlg = false;
       this._playerMoveParam = {
@@ -16,9 +21,13 @@ scene.GameScene = (function() {
         moveSpeed : 10,//単位はピクセル/frame
         movingFlg : false,
         moveToPos : null,
+
         //1frameあたりに動く距離（毎フレーム計算したくないのでパラメーターとしてもっとく）
         diffX : 0,
-        diffY : 0
+        diffY : 0,
+
+        //タップした場所についたかどうか判定用
+        frameCount : 0
       }
 
       this._views = {
@@ -65,6 +74,16 @@ scene.GameScene = (function() {
       this._views.labelClear.setVisible(false);
       this._views.labelGameOver.setVisible(false);
 
+      //プレイヤーとゴール、外枠の初期位置を記録しておく
+      this._playerInitPos = this._views.player.getPosition();
+      this._goalInitPos = this._views.goal.getPosition();
+      for(var i = 0; i < 4; i++){
+        this._wallInitPos[i] = this._views.walls[i].getPosition();
+      }
+      
+      //迷路生成
+      this._createMaze(this._currentStage);
+
       // アニメーション再生
       this._ccsData.action.play('ready', false);
 
@@ -91,10 +110,17 @@ scene.GameScene = (function() {
 
       //プレイヤーの移動
       if(this._playingFlg && this._playerMovingFlg && !this._checkTouchingWithEachWall(this._playerMoveParam.diffX, this._playerMoveParam.diffY)){
-        var nowPlayerPos = this._views.player.getPosition();
         //タップした場所についたら止まる
-        if(Math.abs(nowPlayerPos.x - this._playerMoveParam.moveToPos.x) > 1 || Math.abs(nowPlayerPos.y - this._playerMoveParam.moveToPos.y) > 1){
-          this._views.player.setPosition(nowPlayerPos.x + this._playerMoveParam.diffX, nowPlayerPos.y + this._playerMoveParam.diffY);
+        if(this._playerMoveParam.frameCount < this._playerMoveParam.moveSpeed){
+          for(var i = 0; i < this._views.walls.length; i++){
+            var wall = this._views.walls[i];
+            wall.setPosition(wall.getPositionX() - this._playerMoveParam.diffX, wall.getPositionY() - this._playerMoveParam.diffY);
+          }
+
+          var goal = this._views.goal;
+          goal.setPosition(goal.getPositionX() - this._playerMoveParam.diffX, goal.getPositionY() - this._playerMoveParam.diffY);
+
+          this._playerMoveParam.frameCount++;
         }
         else{
           this._playerMovingFlg = false;
@@ -105,25 +131,33 @@ scene.GameScene = (function() {
       var goalRect = this._views.goal.getBoundingBox();
 
       if(cc.rectIntersectsRect(playerRect, goalRect)){
-        //ゴールに到着でゲーム終了
-        this._views.labelClear.setVisible(true);
-        this.unscheduleUpdate();
-        this._playingFlg = false
+        //ゴールに到着、かつステージ１０でゲーム終了
+        if(this._currentStage === 10){
+          this._views.labelClear.setVisible(true);
+          this.unscheduleUpdate();
+          this._playingFlg = false;
+        }
+        else{
+          //ステージ10までいってなかったら次のステージへ
+          this._goToNextStage();
+        }
       }
 
-      if(this._time < 0){
-        //時間切れでゲーム終了
-        this._views.labelGameOver.setVisible(true);
-        this.unscheduleUpdate();
-        this._playingFlg = false
-      }
+      // if(this._time < 0){
+      //   //時間切れでゲーム終了
+      //   this._views.labelGameOver.setVisible(true);
+      //   this.unscheduleUpdate();
+      //   this._playingFlg = false
+      // }
     },
 
     _onClickButtonTap : function(index) {
       // 画面をタップしたらそこに向かってプレイヤーが動きます。
+      //必要なパラメータ初期化
+      this._playerMoveParam.frameCount = 0;
       this._playerMoveParam.moveToPos = this._views.buttonTap._touchBeganPosition;
+
       var nowPlayerPos = this._views.player.getPosition();
-      //var nowPlayerPosY = this._views.player.getPositionY;
 
       //１フレームあたりの動く距離を保存しとく（いちいち計算したくないので）
       this._playerMoveParam.diffX = (this._playerMoveParam.moveToPos.x - nowPlayerPos.x) / this._playerMoveParam.moveSpeed;
@@ -148,6 +182,37 @@ scene.GameScene = (function() {
       }
       return false;
     },
+
+    _createMaze : function(stage) {
+      //迷路をコードから作ります
+      var wall = cc.Sprite.create("res/images/ui/common/wall.png");
+
+      //左の枠の位置を基準にします
+      var posOffsetX = this._views.walls[0].getPositionX();
+      var posOffsetY = this._views.walls[0].getPositionY();
+
+      //もろもろのパラメータ設置してaddChild
+      wall.setPosition(posOffsetX + (100 * stage) , posOffsetY + 100);  
+      wall.setScale(0.1, 0.1);
+      this.addChild(wall, 0);
+      this._views.walls.push(wall); // _wallsという配列に追加して保持しておく
+    },
+
+    _goToNextStage : function() {
+      //次のステージへ進む処理
+      this._currentStage++;
+      this._time = this._time + 10;
+
+      //プレイヤーとゴールと外枠の壁を初期位置へ
+      this._views.player.setPosition(this._playerInitPos);
+      this._views.goal.setPosition(this._goalInitPos);
+      for(var i = 0; i < 4; i++){
+         this._views.walls[i].setPosition(this._wallInitPos[i]);
+      }
+
+      this._createMaze(this._currentStage);
+    },
+
     _onClickButtonBack : function() {
       util.scene.popScene();
     }
