@@ -185,6 +185,44 @@ scene.GameScene = (function() {
 
     _createMaze : function(stage) {
       //迷路をコードから作ります
+      
+      //情報格納用配列
+      var mazeInfoArray = new Array(10);
+      for(let i = 0; i < 10; i++) {
+        mazeInfoArray[i] = new Array(10).fill(0);
+      }
+
+      //スタートとゴールの位置を設定
+      mazeInfoArray[9][0] = 'S';//スタート
+      mazeInfoArray[0][9] = 'G';//ゴール
+
+      //スタート→ゴールへの一直線の道を"@"で作る
+      //スタート、ゴール、現在位置のインデックス番号を記録
+      var startIdx = {y : 9, x : 0 }
+      var goalIdx = {y : 0, x : 9}
+      var nowIdx = {y : 9, x : 0}
+
+      //スタートからゴールと同じ列に当たるまで右に一直線に進む
+      //端にぶつかったらゴールにたどり着くまで上に一直線に進む
+      //進んだ道を'@'で上書き
+      while(nowIdx.x !== goalIdx.x || nowIdx.y !== goalIdx.y){
+        if(nowIdx.x < goalIdx.x){
+          nowIdx.x++;
+          mazeInfoArray[nowIdx.y][nowIdx.x] = '@';
+        }
+        else{
+          if(nowIdx.y > goalIdx.y){
+            nowIdx.y++;
+            mazeInfoArray[nowIdx.y][nowIdx.x] = '@';
+          }
+        }
+      }
+      
+      this._setWallSprite(stage);
+    },
+
+    _setWallSprite : function(stage) {
+      //スプライトの設置
       var wall = cc.Sprite.create("res/images/ui/common/wall.png");
 
       //左の枠の位置を基準にします
