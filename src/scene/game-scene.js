@@ -204,16 +204,20 @@ scene.GameScene = (function() {
 
       //スタートからゴールと同じ列に当たるまで右に一直線に進む
       //端にぶつかったらゴールにたどり着くまで上に一直線に進む
-      //進んだ道を'@'で上書き
+      //進んだ道は'@'で上書き
+      var direcX = goalIdx.x - nowIdx.x;//方向を定義
+      var direcY = goalIdx.y - nowIdx.y;
       while(nowIdx.x !== goalIdx.x || nowIdx.y !== goalIdx.y){
         if(nowIdx.x < goalIdx.x){
-          nowIdx.x++;
+          nowIdx.x = nowIdx.x + (direcX / Math.abs(direcX));
           mazeInfoArray[nowIdx.y][nowIdx.x] = '@';
         }
         else{
           if(nowIdx.y > goalIdx.y){
-            nowIdx.y++;
-            mazeInfoArray[nowIdx.y][nowIdx.x] = '@';
+            nowIdx.y = nowIdx.y + (direcY / Math.abs(direcY));
+            if(mazeInfoArray[nowIdx.y][nowIdx.x] !== 'G'){
+              mazeInfoArray[nowIdx.y][nowIdx.x] = '@';
+            }
           }
         }
       }
