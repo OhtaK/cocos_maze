@@ -202,24 +202,48 @@ scene.GameScene = (function() {
       var goalIdx = {y : 0, x : 9}
       var nowIdx = {y : 9, x : 0}
 
-      //スタートからゴールと同じ列に当たるまで右に一直線に進む
-      //端にぶつかったらゴールにたどり着くまで上に一直線に進む
+      //ランダムに方向を決めてゴールまで進む（斜めはなし）
       //進んだ道は'@'で上書き
-      var direcX = goalIdx.x - nowIdx.x;//方向を定義
-      var direcY = goalIdx.y - nowIdx.y;
-      while(nowIdx.x !== goalIdx.x || nowIdx.y !== goalIdx.y){
-        if(nowIdx.x < goalIdx.x){
-          nowIdx.x = nowIdx.x + (direcX / Math.abs(direcX));
-          mazeInfoArray[nowIdx.y][nowIdx.x] = '@';
+      var goaledFlg = false;
+      while(!goaledFlg){
+        //方向を定義（ランダム）
+        var direcX = 0;
+        var direcY = 0;
+        if(Math.random() > 0.75){
+          direcX = 1;
+        }
+        else if(Math.random() > 0.5){
+          direcX = -1;
+        }
+        else if(Math.random() > 0.25){
+          direcY = 1;
         }
         else{
-          if(nowIdx.y > goalIdx.y){
-            nowIdx.y = nowIdx.y + (direcY / Math.abs(direcY));
-            if(mazeInfoArray[nowIdx.y][nowIdx.x] !== 'G'){
-              mazeInfoArray[nowIdx.y][nowIdx.x] = '@';
-            }
-          }
+          direcY = -1;
         }
+
+        //もう進んだ道、スタート、ゴールは通らないようにする
+        //壁を超えた場合ももう一度やり直し
+        //ゴールしたら繰り返ししないようにフラグ更新
+        var moveToPos = {
+          x : nowIdx.x + direcX,
+          y : nowIdx.y + direcY
+        }
+
+        if(moveToPos.x > 9 || moveToPos.x < 0 || 
+        moveToPos.y > 9 || moveToPos.y < 0 || 
+        mazeInfoArray[moveToPos.y][moveToPos.x] === "S" || 
+        mazeInfoArray[moveToPos.y][moveToPos.x] === "G" || 
+        mazeInfoArray[moveToPos.y][moveToPos.x] === "@"){
+          if(mazeInfoArray[moveToPos.y][moveToPos.x] === "G"){
+            goaledFlg = true;
+          }
+          continue;
+        }
+      
+        nowIdx.x = nowIdx.x + direcX;
+        nowIdx.y = nowIdx.y + direcY;
+        mazeInfoArray[nowIdx.y][nowIdx.x] = '@';
       }
       
       this._setWallSprite(stage);
