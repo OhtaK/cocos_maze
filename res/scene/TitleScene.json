@@ -376,7 +376,7 @@
           {
             "FileData": {
               "Type": "Normal",
-              "Path": "images/ui/title/bg_title.png",
+              "Path": "images/ui/common/back.png",
               "Plist": ""
             },
             "BlendFunc": {
@@ -384,38 +384,38 @@
               "Dst": 771
             },
             "AnchorPoint": {
-              "ScaleX": 0.5,
-              "ScaleY": 0.5
+              "ScaleX": 0.7484,
+              "ScaleY": 0.581
             },
             "Position": {
-              "X": 320.9963,
-              "Y": 567.9982
+              "X": 481.0,
+              "Y": 661.4999
             },
             "Scale": {
-              "ScaleX": 0.4,
-              "ScaleY": 1.0638
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
             },
             "CColor": {},
             "IconVisible": false,
             "PrePosition": {
-              "X": 0.5016,
-              "Y": 0.5
+              "X": 0.7516,
+              "Y": 0.5823
             },
             "PreSize": {
-              "X": 2.5,
-              "Y": 0.9384
+              "X": 1.0,
+              "Y": 1.0
             },
-            "LeftMargin": -479.0037,
-            "RightMargin": -480.9963,
-            "TopMargin": 35.0017,
-            "BottomMargin": 34.9982,
-            "Tag": 7,
-            "ActionTag": 1230290056,
+            "LeftMargin": 2.0,
+            "RightMargin": -2.0,
+            "TopMargin": -1.5,
+            "BottomMargin": 1.5,
+            "Tag": 26,
+            "ActionTag": 407754545,
             "Size": {
-              "X": 1600.0,
-              "Y": 1066.0
+              "X": 640.0,
+              "Y": 1136.0
             },
-            "Name": "bgTitle",
+            "Name": "back_2",
             "ctype": "SpriteObjectData"
           },
           {
@@ -459,8 +459,8 @@
               "ScaleY": 0.5
             },
             "Position": {
-              "X": 326.9973,
-              "Y": 146.997
+              "X": 338.9973,
+              "Y": 193.9969
             },
             "Scale": {
               "ScaleX": 1.3884,
@@ -469,19 +469,19 @@
             "CColor": {},
             "IconVisible": false,
             "PrePosition": {
-              "X": 0.5109,
-              "Y": 0.1294
+              "X": 0.5297,
+              "Y": 0.1708
             },
             "PreSize": {
               "X": 0.4688,
               "Y": 0.088
             },
-            "LeftMargin": 176.9973,
-            "RightMargin": 163.0027,
-            "TopMargin": 939.003,
-            "BottomMargin": 96.997,
-            "Tag": 16,
-            "ActionTag": -361257567,
+            "LeftMargin": 188.9973,
+            "RightMargin": 151.0027,
+            "TopMargin": 892.0031,
+            "BottomMargin": 143.9969,
+            "Tag": 27,
+            "ActionTag": -1563506302,
             "Size": {
               "X": 300.0,
               "Y": 100.0
@@ -492,7 +492,7 @@
           {
             "IsCustomSize": true,
             "FontSize": 60,
-            "LabelText": "ころころメイズ",
+            "LabelText": "ちくたくガイド",
             "HorizontalAlignmentType": "HT_Center",
             "VerticalAlignmentType": "VT_Center",
             "OutlineColor": {
@@ -511,8 +511,8 @@
               "ScaleY": 0.5
             },
             "Position": {
-              "X": 322.0046,
-              "Y": 902.9977
+              "X": 327.0045,
+              "Y": 923.9977
             },
             "Scale": {
               "ScaleX": 0.9913,
@@ -521,19 +521,19 @@
             "CColor": {},
             "IconVisible": false,
             "PrePosition": {
-              "X": 0.5031,
-              "Y": 0.7949
+              "X": 0.5109,
+              "Y": 0.8134
             },
             "PreSize": {
               "X": 0.9375,
               "Y": 0.0783
             },
-            "LeftMargin": 22.0046,
-            "RightMargin": 17.9954,
-            "TopMargin": 188.5023,
-            "BottomMargin": 858.4977,
-            "Tag": 17,
-            "ActionTag": -375518680,
+            "LeftMargin": 27.0045,
+            "RightMargin": 12.9955,
+            "TopMargin": 167.5023,
+            "BottomMargin": 879.4977,
+            "Tag": 28,
+            "ActionTag": -332194203,
             "Size": {
               "X": 600.0,
               "Y": 89.0
@@ -552,9 +552,9 @@
       "UsedResources": [
         "../Default/Button_Disable.png",
         "../font/rounded-x-mplus-1c-heavy.ttf",
+        "../images/ui/common/back.png",
         "../images/ui/common/btn_info.png",
-        "../images/ui/common/btn_info_highlight.png",
-        "../images/ui/title/bg_title.png"
+        "../images/ui/common/btn_info_highlight.png"
       ],
       "ctype": "GameFileData"
     }

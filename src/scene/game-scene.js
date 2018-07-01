@@ -32,12 +32,10 @@ scene.GameScene = (function() {
 
       this._views = {
         labelDifficulty : null,
-        labelScore : null,
         labelTime : null,
         labelClear : null,
         labelGameOver : null,
         buttonTap : null,
-        btnLeft : null,
         buttonBack : null,
         player : null,
         walls : [],
@@ -47,27 +45,11 @@ scene.GameScene = (function() {
     onEnter : function() {
       this._super();
       this._loadScene(res.GameScene);
-
-      // レベル毎の設定
-      var title = '';
-      var difficulty = this._param.difficulty;
-      switch (difficulty) {
-      case DifficultyType.EASY:
-        title = '難易度：EASY';
-        this._count = 30;
-        break;
-      case DifficultyType.NORMAL:
-        title = '難易度：NORMAL';
-        this._count = 50;
-        break;
-      case DifficultyType.HARD:
-        title = '難易度：HARD';
-        this._count = 100;
-        break;
-      }
-
+      
+      this._count = 30;
       // UIを初期化
-      this._views.labelDifficulty.setString(title);
+      var stageCount = "ステージ：" + this._currentStage + "/5"
+      this._views.labelDifficulty.setString(stageCount);
       this._views.labelTime.setString(this._time);
       this._views.buttonTap.setVisible(false);
 
@@ -97,7 +79,6 @@ scene.GameScene = (function() {
 
         // ゲーム開始
         this._views.buttonTap.setVisible(true);
-        this._views.labelScore.setString('Tap Me!!');
 
         // updateを毎フレーム呼ぶように
         this.scheduleUpdate();
@@ -131,24 +112,24 @@ scene.GameScene = (function() {
       var goalRect = this._views.goal.getBoundingBox();
 
       if(cc.rectIntersectsRect(playerRect, goalRect)){
-        //ゴールに到着、かつステージ１０でゲーム終了
-        if(this._currentStage === 10){
+        //ゴールに到着、かつステージ5でゲーム終了
+        if(this._currentStage === 5){
           this._views.labelClear.setVisible(true);
           this.unscheduleUpdate();
           this._playingFlg = false;
         }
         else{
-          //ステージ10までいってなかったら次のステージへ
+          //ステージ5までいってなかったら次のステージへ
           this._goToNextStage();
         }
       }
 
-      // if(this._time < 0){
-      //   //時間切れでゲーム終了
-      //   this._views.labelGameOver.setVisible(true);
-      //   this.unscheduleUpdate();
-      //   this._playingFlg = false
-      // }
+      if(this._time < 0){
+        //時間切れでゲーム終了
+        this._views.labelGameOver.setVisible(true);
+        this.unscheduleUpdate();
+        this._playingFlg = false
+      }
     },
 
     _onClickButtonTap : function(index) {
@@ -214,10 +195,11 @@ scene.GameScene = (function() {
       var wallPosList = [];//「経路を伸ばせる（＝０に隣接してる）壁の位置」をリストに記録しておく
       
       while(!goaledFlg){
-        //方向を定義（ランダム）
+        //方向を定義（進める方向からランダムに選択）
         var direcX = 0;
         var direcY = 0;
-        if(Math.random() > 0.5){
+
+        if(Math.random() > 0.50){
           direcX = 1;
         }
         else{
@@ -229,6 +211,11 @@ scene.GameScene = (function() {
           y : nowIdx.y + direcY
         }
 
+        if(this._checkIsSurroundedByUpdatedElem(mazeInfoArray, nowIdx.x, nowIdx.y)){
+          //袋小路（上下左右全て上書きできない）ときは、０に隣接している壁をランダムに探して現在位置にして再開
+          break;
+        }
+
         //移動先の座標がアップデート済みならそのステップをやり直し
         if(mazeInfoArray[moveToPos.y][moveToPos.x] !== 0){
           continue;
@@ -238,41 +225,30 @@ scene.GameScene = (function() {
         mazeInfoArray[nowIdx.y + direcY][nowIdx.x + direcX] = '@';
 
         //現在位置の上下左右に０があったらそこを壁にするので"#"で記録
-        //上下左右のどこをアップデートしたかのフラグ
-        var updatedFlg = {
-          up : false,
-          down : false,
-          left : false,
-          right : false,
-        }
         if(mazeInfoArray[nowIdx.y - 1][nowIdx.x] === 0){
           mazeInfoArray[nowIdx.y - 1][nowIdx.x] = '#';
           wallPosList.push({x : nowIdx.x, y : nowIdx.y - 1});
-          updatedFlg.up = true;
         }
         if(mazeInfoArray[nowIdx.y + 1][nowIdx.x] === 0){
           mazeInfoArray[nowIdx.y + 1][nowIdx.x] = '#';
           wallPosList.push({x : nowIdx.x, y : nowIdx.y + 1});
-          updatedFlg.down = true;
         }
         if(mazeInfoArray[nowIdx.y][nowIdx.x + 1] === 0){
           mazeInfoArray[nowIdx.y][nowIdx.x + 1] = '#';
           wallPosList.push({x : nowIdx.x + 1, y : nowIdx.y});
-          updatedFlg.right = true;
         }
         if(mazeInfoArray[nowIdx.y][nowIdx.x - 1] === 0){
           mazeInfoArray[nowIdx.y][nowIdx.x - 1] = '#';
           wallPosList.push({x : nowIdx.x - 1, y : nowIdx.y});
-          updatedFlg.left = true;
         }
 
-        if(!updatedFlg.up && !updatedFlg.down && !updatedFlg.right && !updatedFlg.left){
-          //袋小路（上下左右全て上書きできない）ときは、０に隣接している壁をランダムに探して現在位置にして再開
-        }
+        //現在位置更新
+        nowIdx.x = nowIdx.x + direcX;
+        nowIdx.y = nowIdx.y + direcY;
 
         //ゴールの一歩手前まできたらしたら繰り返ししないようにフラグ更新
         //ついでにゴールの周りに０があったら壁にする
-        if(moveToPos.x === goalPos.x && moveToPos.y === goalPos.y){
+        if(nowIdx.x === goalPos.x && nowIdx.y === goalPos.y){
           goaledFlg = true;
           mazeInfoArray[1][10] = "@"
           if(mazeInfoArray[goalPos.y][goalPos.x - 1] === 0){
@@ -285,10 +261,6 @@ scene.GameScene = (function() {
           }
           continue;
         }
-
-        //現在位置更新
-        nowIdx.x = nowIdx.x + direcX;
-        nowIdx.y = nowIdx.y + direcY;
       }
       
       this._setWallSprite(wallPosList);
@@ -302,6 +274,33 @@ scene.GameScene = (function() {
       }
 
       return true;
+    },
+
+    _checkIsSurroundedByUpdatedElem : function(mazeInfoArray, basicPosX, basicPosY) {
+      //アップデート済みの要素に囲まれているかどうかのチェック
+      //外壁だったら見る意味がないので、無条件でfalseをかえす
+      if(basicPosY - 1 < 0 || basicPosY + 1 > 11 || basicPosX - 1 < 0 || basicPosX + 1 > 11){
+        return false;
+      }
+
+      if(mazeInfoArray[basicPosY - 1][basicPosX] !== 0 &&
+      mazeInfoArray[basicPosY + 1][basicPosX] !== 0 &&
+      mazeInfoArray[basicPosY][basicPosX - 1] !== 0 &&
+      mazeInfoArray[basicPosY][basicPosX + 1] !== 0){
+        return true;
+      }
+
+      return false;
+    },
+
+    _deleteElemFromPosList : function(list, posX, posY) {
+      //座標が入ったリストから任意の要素を削除
+      for(var i = 0; i < list.length; i++){
+        if(list[i].x === posX && list[i].y === posY){
+          list.splice(i, 1);
+        }
+      }
+      return list;
     },
 
     _setWallSprite : function(wallPosList) {
@@ -324,6 +323,9 @@ scene.GameScene = (function() {
       //次のステージへ進む処理
       this._currentStage++;
       this._time = this._time + 10;
+
+      var stageCount = "ステージ：" + this._currentStage + "/5"
+      this._views.labelDifficulty.setString(stageCount);
 
       //プレイヤーとゴールと外枠の壁を初期位置へ
       this._views.player.setPosition(this._playerInitPos);

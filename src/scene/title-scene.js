@@ -15,7 +15,9 @@ scene.TitleScene = (function() {
       this._ccsData.action.play('wait', true);
     },
     _onClickBtnStart : function(index) {
-      util.scene.replaceScene(scene.DifficultyScene);
+      util.scene.pushScene(scene.GameScene, {
+        difficulty : index
+      });
     }
   });
   return TitleScene;
