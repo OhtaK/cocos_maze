@@ -201,17 +201,18 @@ scene.GameScene = (function() {
       }
 
       //スタートとゴールの位置を設定
-      mazeInfoArray[10][1] = 'S';//スタート
-      mazeInfoArray[1][10] = 'G';//ゴール
-
-      //スタート→ゴールへの一直線の道を"@"で作る
-      //現在位置のインデックス番号を記録
       var nowIdx = {y : 10, x : 1}
+      mazeInfoArray[10][1] = "@"
+
+      var goalPos = {
+        x : 10,
+        y : 1
+      };
 
       //ランダムに方向を決めてゴールまで進む（斜めはなし）
-      //進んだ道は'@'で上書き
       var goaledFlg = false;
       var wallPosList = [];//「経路を伸ばせる（＝０に隣接してる）壁の位置」をリストに記録しておく
+      
       while(!goaledFlg){
         //方向を定義（ランダム）
         var direcX = 0;
@@ -223,22 +224,13 @@ scene.GameScene = (function() {
           direcY = -1;
         }
 
-        //もう進んだ道、スタート、ゴールは通らないようにする
-        //壁を超えた場合ももう一度やり直し
-        
         var moveToPos = {
           x : nowIdx.x + direcX,
           y : nowIdx.y + direcY
         }
 
-        //ゴールしたら繰り返ししないようにフラグ更新
-        if(mazeInfoArray[moveToPos.y][moveToPos.x] === "G"){
-          goaledFlg = true;
-          continue;
-        }
-
-        //移動先がスタート、ゴール、すでに通った経路、壁のいずれかを満たしたらそのステップをやり直し
-        if(!this._checkMazeValidation(mazeInfoArray[moveToPos.y][moveToPos.x])){
+        //移動先の座標がアップデート済みならそのステップをやり直し
+        if(mazeInfoArray[moveToPos.y][moveToPos.x] !== 0){
           continue;
         }
 
@@ -246,29 +238,57 @@ scene.GameScene = (function() {
         mazeInfoArray[nowIdx.y + direcY][nowIdx.x + direcX] = '@';
 
         //現在位置の上下左右に０があったらそこを壁にするので"#"で記録
+        //上下左右のどこをアップデートしたかのフラグ
+        var updatedFlg = {
+          up : false,
+          down : false,
+          left : false,
+          right : false,
+        }
         if(mazeInfoArray[nowIdx.y - 1][nowIdx.x] === 0){
           mazeInfoArray[nowIdx.y - 1][nowIdx.x] = '#';
           wallPosList.push({x : nowIdx.x, y : nowIdx.y - 1});
+          updatedFlg.up = true;
         }
         if(mazeInfoArray[nowIdx.y + 1][nowIdx.x] === 0){
           mazeInfoArray[nowIdx.y + 1][nowIdx.x] = '#';
           wallPosList.push({x : nowIdx.x, y : nowIdx.y + 1});
+          updatedFlg.down = true;
         }
         if(mazeInfoArray[nowIdx.y][nowIdx.x + 1] === 0){
           mazeInfoArray[nowIdx.y][nowIdx.x + 1] = '#';
           wallPosList.push({x : nowIdx.x + 1, y : nowIdx.y});
+          updatedFlg.right = true;
         }
         if(mazeInfoArray[nowIdx.y][nowIdx.x - 1] === 0){
           mazeInfoArray[nowIdx.y][nowIdx.x - 1] = '#';
           wallPosList.push({x : nowIdx.x - 1, y : nowIdx.y});
+          updatedFlg.left = true;
+        }
+
+        if(!updatedFlg.up && !updatedFlg.down && !updatedFlg.right && !updatedFlg.left){
+          //袋小路（上下左右全て上書きできない）ときは、０に隣接している壁をランダムに探して現在位置にして再開
+        }
+
+        //ゴールの一歩手前まできたらしたら繰り返ししないようにフラグ更新
+        //ついでにゴールの周りに０があったら壁にする
+        if(moveToPos.x === goalPos.x && moveToPos.y === goalPos.y){
+          goaledFlg = true;
+          mazeInfoArray[1][10] = "@"
+          if(mazeInfoArray[goalPos.y][goalPos.x - 1] === 0){
+            mazeInfoArray[goalPos.y][goalPos.x - 1] = '#';
+            wallPosList.push({x : goalPos.x - 1, y : goalPos.y});
+          }
+          if(mazeInfoArray[goalPos.y + 1][goalPos.x] === 0){
+            mazeInfoArray[goalPos.y + 1][goalPos.x] = '#';
+            wallPosList.push({x : goalPos.x, y : goalPos.y + 1});
+          }
+          continue;
         }
 
         //現在位置更新
         nowIdx.x = nowIdx.x + direcX;
         nowIdx.y = nowIdx.y + direcY;
-
-        //袋小路（上下左右全て上書きできない）ときは、０に隣接している壁をランダムに探して現在位置にして再開
-        
       }
       
       this._setWallSprite(wallPosList);
@@ -285,7 +305,7 @@ scene.GameScene = (function() {
     },
 
     _setWallSprite : function(wallPosList) {
-      //スプライトの設置
+      //壁スプライトの設置
       //左下の角の位置を基準にします
       var posOffsetX = 74.50 + 40;
       var posOffsetY = 165.50 + 45;
