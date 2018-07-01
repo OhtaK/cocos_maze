@@ -186,37 +186,38 @@ scene.GameScene = (function() {
     _createMaze : function(stage) {
       //迷路をコードから作ります
       
-      //情報格納用配列
-      var mazeInfoArray = new Array(10);
-      for(let i = 0; i < 10; i++) {
-        mazeInfoArray[i] = new Array(10).fill(0);
+      //情報格納用配列(実質な迷路としては10 * 10、外壁も入れて12 * 12)
+      var mazeInfoArray = new Array(12);
+      for(var i = 0; i < 12; i++) {
+        mazeInfoArray[i] = new Array(12).fill(0);
+      }
+
+      for(var i = 0; i < 12; i++){
+        //外壁を作ります。
+        mazeInfoArray[0][i] = "#"
+        mazeInfoArray[i][0] = "#"
+        mazeInfoArray[11][11 - i] = "#"
+        mazeInfoArray[11 - i][11] = "#"
       }
 
       //スタートとゴールの位置を設定
-      mazeInfoArray[9][0] = 'S';//スタート
-      mazeInfoArray[0][9] = 'G';//ゴール
+      mazeInfoArray[10][1] = 'S';//スタート
+      mazeInfoArray[1][10] = 'G';//ゴール
 
       //スタート→ゴールへの一直線の道を"@"で作る
-      //スタート、ゴール、現在位置のインデックス番号を記録
-      var startIdx = {y : 9, x : 0 }
-      var goalIdx = {y : 0, x : 9}
-      var nowIdx = {y : 9, x : 0}
+      //現在位置のインデックス番号を記録
+      var nowIdx = {y : 10, x : 1}
 
       //ランダムに方向を決めてゴールまで進む（斜めはなし）
       //進んだ道は'@'で上書き
       var goaledFlg = false;
+      var wallPosList = [];//「経路を伸ばせる（＝０に隣接してる）壁の位置」をリストに記録しておく
       while(!goaledFlg){
         //方向を定義（ランダム）
         var direcX = 0;
         var direcY = 0;
-        if(Math.random() > 0.75){
+        if(Math.random() > 0.5){
           direcX = 1;
-        }
-        else if(Math.random() > 0.5){
-          direcX = -1;
-        }
-        else if(Math.random() > 0.25){
-          direcY = 1;
         }
         else{
           direcY = -1;
@@ -230,23 +231,91 @@ scene.GameScene = (function() {
           y : nowIdx.y + direcY
         }
 
-        if(moveToPos.x > 9 || moveToPos.x < 0 || 
-        moveToPos.y > 9 || moveToPos.y < 0 || 
-        mazeInfoArray[moveToPos.y][moveToPos.x] === "S" || 
-        mazeInfoArray[moveToPos.y][moveToPos.x] === "G" || 
-        mazeInfoArray[moveToPos.y][moveToPos.x] === "@"){
-          if(mazeInfoArray[moveToPos.y][moveToPos.x] === "G"){
-            goaledFlg = true;
-          }
+        //移動先がスタート、ゴール、すでに通った経路、壁のいずれかを満たしたらそのステップをやり直し
+        if(mazeInfoArray[moveToPos.y][moveToPos.x] === "G"){
+          goaledFlg = true;
+          continue;
+        }
+
+        if(!this._checkMazeValidation(mazeInfoArray[moveToPos.y][moveToPos.x])){
           continue;
         }
       
+        //現在位置の脇は壁にするので"#"で記録
+        if(direcX !== 0){
+          //x方向に移動しようとしてたらy方向を壁に
+          if(mazeInfoArray[moveToPos.y + 1][moveToPos.x] === "#"){
+             //壁を作る際にそこがすでに壁、かつ０に隣接してない場合、そこはもう経路を伸ばせないのでリストから削除
+             var wallPos = {
+               x : nowIdx.x,
+               y : nowIdx.y + 1
+             }
+             if(wallPos.y + 1 < 9 && wallPos.y - 1 < 0 && wallPos.x + 1 < 9 && wallPos.x - 1 < 0){
+               if(mazeInfoArray[wallPos.y + 1][wallPos.x] !== 0 &&
+                 mazeInfoArray[wallPos.y - 1][wallPos.x] !== 0  &&
+                 mazeInfoArray[wallPos.y][wallPos.x + 1] !== 0  &&
+                 mazeInfoArray[wallPos.y][wallPos.x - 1] !== 0 ){
+                 wallPosList = wallPosList.filter(wallPos => wallPos !== {x : nowIdx.x, y : nowIdx.y + 1});
+               }
+             }
+          }
+          if(this._checkMazeValidation(mazeInfoArray[moveToPos.y + 1][moveToPos.x])){
+             mazeInfoArray[nowIdx.y + 1][nowIdx.x] = '#';
+             var wallPos = {
+               x : nowIdx.x,
+               y : nowIdx.y + 1
+             }
+             wallPosList.push(wallPos);
+          }
+          if(this._checkMazeValidation(mazeInfoArray[moveToPos.y - 1][moveToPos.x])){
+            mazeInfoArray[nowIdx.y - 1][nowIdx.x] = '#';
+            var wallPos = {
+              x : nowIdx.x,
+              y : nowIdx.y - 1
+            }
+            wallPosList.push(wallPos);
+          }
+        }
+        else if(direcY !== 0){
+          //y方向に移動しようとしてたらx方向を壁に
+          if(this._checkMazeValidation(mazeInfoArray[moveToPos.y][moveToPos.x + 1])){
+            mazeInfoArray[nowIdx.y][nowIdx.x + 1] = '#';
+            var wallPos = {
+              x : nowIdx.x + 1,
+              y : nowIdx.y
+            }
+            wallPosList.push(wallPos);
+          }
+          if(this._checkMazeValidation(mazeInfoArray[moveToPos.y][moveToPos.x - 1])){
+            mazeInfoArray[nowIdx.y][nowIdx.x - 1] = '#';
+            var wallPos = {
+              x : nowIdx.x - 1,
+              y : nowIdx.y
+            }
+            wallPosList.push(wallPos);
+          }
+        }
+
         nowIdx.x = nowIdx.x + direcX;
         nowIdx.y = nowIdx.y + direcY;
+        //通った経路を"@"で記録
         mazeInfoArray[nowIdx.y][nowIdx.x] = '@';
+
+        //袋小路（上下左右全て上書きできない）ときは、０に隣接している壁をランダムに探して現在位置にして再開
+        
       }
       
       this._setWallSprite(stage);
+    },
+
+    _checkMazeValidation : function(mazeElem) {
+      //迷路を上書きしていいかどうかのチェック
+      //移動先がスタート、ゴール、すでに通った経路、壁のいずれかを満たしたらfalseを返す
+      if(mazeElem === "S" || mazeElem === "G" || mazeElem === "@" || mazeElem === "#"){
+        return false;
+      }
+
+      return true;
     },
 
     _setWallSprite : function(stage) {
