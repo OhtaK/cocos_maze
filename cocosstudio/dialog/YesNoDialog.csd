@@ -49,13 +49,13 @@
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="buttonNo" ActionTag="-2016865929" Tag="537" IconVisible="False" LeftMargin="320.0000" RightMargin="80.0000" TopMargin="360.0000" BottomMargin="40.0000" TouchEnable="True" FontSize="30" ButtonText="No" Scale9Enable="True" LeftEage="20" RightEage="20" TopEage="20" BottomEage="20" Scale9OriginX="20" Scale9OriginY="20" Scale9Width="10" Scale9Height="10" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+              <AbstractNodeData Name="buttonNo" ActionTag="-2016865929" Tag="537" IconVisible="False" LeftMargin="320.0000" RightMargin="80.0000" TopMargin="361.0000" BottomMargin="39.0000" TouchEnable="True" FontSize="30" ButtonText="No" Scale9Enable="True" LeftEage="20" RightEage="20" TopEage="20" BottomEage="20" Scale9OriginX="20" Scale9OriginY="20" Scale9Width="10" Scale9Height="10" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
                 <Size X="200.0000" Y="50.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="420.0000" Y="65.0000" />
+                <Position X="420.0000" Y="64.0000" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.7000" Y="0.1444" />
+                <PrePosition X="0.7000" Y="0.1422" />
                 <PreSize X="0.3333" Y="0.1111" />
                 <FontResource Type="Normal" Path="font/rounded-x-mplus-1c-heavy.ttf" Plist="" />
                 <TextColor A="255" R="255" G="255" B="255" />

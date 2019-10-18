@@ -4,7 +4,7 @@
     <Content>
       <Animation Duration="120" Speed="1.0000">
         <Timeline ActionTag="789315359" Property="Position">
-          <PointFrame FrameIndex="0" X="320.0000" Y="346.0000">
+          <PointFrame FrameIndex="0" X="-191.0000" Y="511.0000">
             <EasingData Type="0" />
           </PointFrame>
           <PointFrame FrameIndex="60" X="320.0000" Y="346.0000">
@@ -48,7 +48,7 @@
           </IntFrame>
         </Timeline>
         <Timeline ActionTag="-559020844" Property="Position">
-          <PointFrame FrameIndex="0" X="320.0000" Y="891.5000">
+          <PointFrame FrameIndex="0" X="-367.0000" Y="888.5000">
             <EasingData Type="0" />
           </PointFrame>
           <PointFrame FrameIndex="30" X="320.0000" Y="911.5000">
@@ -83,24 +83,13 @@
       <ObjectData Name="Scene" Tag="110" ctype="GameNodeObjectData">
         <Size X="640.0000" Y="1136.0000" />
         <Children>
-          <AbstractNodeData Name="spriteBg" ActionTag="1147675195" Tag="11" IconVisible="False" ctype="SpriteObjectData">
-            <Size X="640.0000" Y="1136.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="320.0000" Y="568.0000" />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.5000" />
-            <PreSize X="1.0000" Y="1.0000" />
-            <FileData Type="Normal" Path="images/ui/common/back.png" Plist="" />
-            <BlendFunc Src="770" Dst="771" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="buttonStart" ActionTag="789315359" Tag="118" IconVisible="False" VerticalEdge="BottomEdge" LeftMargin="170.0000" RightMargin="170.0000" TopMargin="740.0000" BottomMargin="296.0000" TouchEnable="True" FontSize="40" ButtonText="START" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="20" Scale9Height="29" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+          <AbstractNodeData Name="buttonStart" ActionTag="789315359" Tag="118" IconVisible="False" VerticalEdge="BottomEdge" LeftMargin="-341.0000" RightMargin="681.0000" TopMargin="575.0000" BottomMargin="461.0000" TouchEnable="True" FontSize="40" ButtonText="START" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="20" Scale9Height="29" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
             <Size X="300.0000" Y="100.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="320.0000" Y="346.0000" />
+            <Position X="-191.0000" Y="511.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.3046" />
+            <PrePosition X="-0.2984" Y="0.4498" />
             <PreSize X="0.4688" Y="0.0880" />
             <FontResource Type="Normal" Path="font/rounded-x-mplus-1c-heavy.ttf" Plist="" />
             <TextColor A="255" R="255" G="255" B="255" />
@@ -110,15 +99,52 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="labelTitle" ActionTag="-559020844" Tag="126" IconVisible="False" LeftMargin="20.0000" RightMargin="20.0000" TopMargin="200.0000" BottomMargin="847.0000" IsCustomSize="True" FontSize="80" LabelText="げーむたいとる" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="labelTitle" ActionTag="-559020844" Tag="126" IconVisible="False" LeftMargin="-667.0000" RightMargin="707.0000" TopMargin="203.0000" BottomMargin="844.0000" IsCustomSize="True" FontSize="80" LabelText="ころころメイズ" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="600.0000" Y="89.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="320.0000" Y="891.5000" />
+            <Position X="-367.0000" Y="888.5000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.7848" />
+            <PrePosition X="-0.5734" Y="0.7821" />
             <PreSize X="0.9375" Y="0.0783" />
             <FontResource Type="Normal" Path="font/rounded-x-mplus-1c-heavy.ttf" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="back_2" ActionTag="407754545" Tag="26" IconVisible="False" LeftMargin="2.0000" RightMargin="-2.0000" TopMargin="-1.5000" BottomMargin="1.5000" ctype="SpriteObjectData">
+            <Size X="640.0000" Y="1136.0000" />
+            <AnchorPoint ScaleX="0.7484" ScaleY="0.5810" />
+            <Position X="481.0000" Y="661.4999" />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.7516" Y="0.5823" />
+            <PreSize X="1.0000" Y="1.0000" />
+            <FileData Type="Normal" Path="images/ui/common/back.png" Plist="" />
+            <BlendFunc Src="770" Dst="771" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="btnStart" ActionTag="-1563506302" Tag="27" IconVisible="False" LeftMargin="188.9973" RightMargin="151.0027" TopMargin="892.0031" BottomMargin="143.9969" TouchEnable="True" FontSize="40" ButtonText="START" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="20" Scale9Height="29" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="300.0000" Y="100.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="338.9973" Y="193.9969" />
+            <Scale ScaleX="1.3884" ScaleY="1.1856" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5297" Y="0.1708" />
+            <PreSize X="0.4688" Y="0.0880" />
+            <TextColor A="255" R="255" G="255" B="255" />
+            <DisabledFileData Type="Default" Path="Default/Button_Disable.png" Plist="" />
+            <PressedFileData Type="Normal" Path="images/ui/common/btn_info.png" Plist="" />
+            <NormalFileData Type="Normal" Path="images/ui/common/btn_info.png" Plist="" />
+            <OutlineColor A="255" R="255" G="0" B="0" />
+            <ShadowColor A="255" R="110" G="110" B="110" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="labelTitle" ActionTag="-332194203" Tag="28" IconVisible="False" LeftMargin="27.0045" RightMargin="12.9955" TopMargin="167.5023" BottomMargin="879.4977" IsCustomSize="True" FontSize="60" LabelText="ちくたくガイド" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="600.0000" Y="89.0000" />
+            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+            <Position X="327.0045" Y="923.9977" />
+            <Scale ScaleX="0.9913" ScaleY="1.0303" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition X="0.5109" Y="0.8134" />
+            <PreSize X="0.9375" Y="0.0783" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
